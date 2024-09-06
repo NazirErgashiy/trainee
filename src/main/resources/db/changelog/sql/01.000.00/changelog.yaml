@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: 1725604814_subjects.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 1725604815_teachers.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 1725604816_students.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 1725604817_student_teachers.sql
+      relativeToChangelogFile: true
