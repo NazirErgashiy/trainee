@@ -26,7 +26,7 @@ import uz.nazir.trainee.services.impl.SubjectService;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/subjects")
+@RequestMapping(value = "api/v1/subjects", consumes = "application/json", produces = "application/json")
 public class SubjectController {
 
     private final SubjectService service;

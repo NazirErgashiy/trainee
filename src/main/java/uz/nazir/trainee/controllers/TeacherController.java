@@ -26,7 +26,7 @@ import uz.nazir.trainee.services.impl.TeacherService;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/teachers")
+@RequestMapping(value = "api/v1/teachers", consumes = "application/json", produces = "application/json")
 public class TeacherController {
 
     private final TeacherService service;
