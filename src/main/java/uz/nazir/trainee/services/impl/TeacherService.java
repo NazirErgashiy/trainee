@@ -38,7 +38,9 @@ public class TeacherService implements BaseService<TeacherRequest, TeacherRespon
     @Transactional(readOnly = true)
     @Override
     public TeacherResponse readById(Long id) {
-        Teacher result = teacherRepository.findById(id).orElseThrow(() -> new TeacherNotFoundException(id));
+        Teacher result = teacherRepository
+                .findById(id)
+                .orElseThrow(() -> new TeacherNotFoundException(id));
         return teacherMapper.entityToDto(result);
     }
 

@@ -34,7 +34,9 @@ public class SubjectService implements BaseService<SubjectRequest, SubjectRespon
     @Transactional(readOnly = true)
     @Override
     public SubjectResponse readById(Long id) {
-        Subject result = subjectRepository.findById(id).orElseThrow(() -> new SubjectNotFoundException(id));
+        Subject result = subjectRepository
+                .findById(id)
+                .orElseThrow(() -> new SubjectNotFoundException(id));
         return subjectMapper.entityToDto(result);
     }
 

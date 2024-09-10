@@ -41,7 +41,9 @@ public class StudentService implements BaseService<StudentRequest, StudentRespon
     @Transactional(readOnly = true)
     @Override
     public StudentResponse readById(Long id) {
-        Student result = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+        Student result = studentRepository
+                .findById(id)
+                .orElseThrow(() -> new StudentNotFoundException(id));
         return studentMapper.entityToDto(result);
     }
 
