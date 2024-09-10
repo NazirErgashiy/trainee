@@ -19,8 +19,8 @@ public class StudentHelper {
      * @return teacher entity
      */
     public List<Teacher> teacherIdsToTeacherList(List<Long> value) {
-        if (value == null || value.isEmpty()) {
-            return new ArrayList<>();
+        if (value == null) {
+            return null;
         }
 
         List<Teacher> result = new ArrayList<>();
