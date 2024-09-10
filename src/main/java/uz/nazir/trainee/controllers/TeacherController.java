@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.nazir.trainee.dto.request.TeacherRequest;
 import uz.nazir.trainee.dto.response.TeacherResponse;
 import uz.nazir.trainee.services.impl.TeacherService;
+import uz.nazir.trainee.validation.OnCreate;
 
 /**
  * Teacher Controller Docs available in swagger
@@ -51,7 +52,7 @@ public class TeacherController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TeacherResponse create(@RequestBody
-                                  @Validated
+                                  @Validated(OnCreate.class)
                                   TeacherRequest request) {
         return service.create(request);
     }

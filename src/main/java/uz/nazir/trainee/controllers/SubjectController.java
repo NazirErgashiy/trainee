@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.nazir.trainee.dto.request.SubjectRequest;
 import uz.nazir.trainee.dto.response.SubjectResponse;
 import uz.nazir.trainee.services.impl.SubjectService;
+import uz.nazir.trainee.validation.OnCreate;
 
 /**
  * Subject Controller Docs available in swagger
@@ -51,7 +52,7 @@ public class SubjectController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public SubjectResponse create(@RequestBody
-                                  @Validated
+                                  @Validated(OnCreate.class)
                                   SubjectRequest request) {
         return service.create(request);
     }
