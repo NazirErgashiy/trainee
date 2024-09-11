@@ -27,7 +27,7 @@ import uz.nazir.trainee.validation.OnCreate;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "api/v1/students", consumes = "application/json", produces = "application/json")
+@RequestMapping(value = "api/v1/students", produces = "application/json")
 public class StudentController {
 
     private final StudentService service;
