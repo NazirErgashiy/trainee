@@ -35,6 +35,7 @@ import static uz.nazir.trainee.TestDataGenerator.RANDOM;
 @ContextConfiguration(initializers = IntegrationTestInitializr.class)
 @SpringBootTest
 @WebAppConfiguration
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class StudentControllerTest {
 
     private String checkPath = "students";
@@ -59,6 +60,7 @@ class StudentControllerTest {
                 .build();
 
         DbTestUtil.resetAutoIncrementColumns(context, "_STUDENTS");
+
         TestDataGenerator.getInstance().createAndGetElements(
                 context,
                 5,
@@ -76,6 +78,7 @@ class StudentControllerTest {
     void tearDown() {
         studentRepository.deleteAll();
     }
+
 
     /**
      * 200

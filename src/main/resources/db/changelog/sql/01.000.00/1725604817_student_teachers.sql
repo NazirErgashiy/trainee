@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset 1725604817_student_teachers.sql:4
-CREATE TABLE IF NOT EXISTS _subjects
+CREATE TABLE IF NOT EXISTS student_teachers
 (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     student_id bigint not null,

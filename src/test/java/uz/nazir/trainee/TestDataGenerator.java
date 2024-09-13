@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import uz.nazir.trainee.mappers.GenericMapper;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 

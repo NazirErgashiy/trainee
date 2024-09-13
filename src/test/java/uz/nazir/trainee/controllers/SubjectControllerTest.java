@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -16,11 +17,8 @@ import uz.nazir.trainee.DbTestUtil;
 import uz.nazir.trainee.IntegrationTestInitializr;
 import uz.nazir.trainee.TestDataGenerator;
 import uz.nazir.trainee.dto.request.SubjectRequest;
-import uz.nazir.trainee.entities.Student;
 import uz.nazir.trainee.entities.Subject;
-import uz.nazir.trainee.mappers.StudentMapper;
 import uz.nazir.trainee.mappers.SubjectMapper;
-import uz.nazir.trainee.repositories.StudentRepository;
 import uz.nazir.trainee.repositories.SubjectRepository;
 
 import java.io.IOException;
@@ -38,6 +36,7 @@ import static uz.nazir.trainee.TestDataGenerator.RANDOM;
 @ContextConfiguration(initializers = IntegrationTestInitializr.class)
 @SpringBootTest
 @WebAppConfiguration
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class SubjectControllerTest {
 
     private String checkPath = "subjects";

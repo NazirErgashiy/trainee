@@ -24,6 +24,7 @@ public final class DbTestUtil {
      */
     public static void resetAutoIncrementColumns(ApplicationContext applicationContext,
                                                  String... tableNames) throws SQLException {
+
         DataSource dataSource = applicationContext.getBean(DataSource.class);
         String resetSqlTemplate = getResetSqlTemplate(applicationContext);
         try (Connection dbConnection = dataSource.getConnection()) {
@@ -31,11 +32,13 @@ public final class DbTestUtil {
             //the created SQL statements.
             for (String resetSqlArgument : tableNames) {
                 try (Statement statement = dbConnection.createStatement()) {
+                    resetSqlArgument += "_id_seq";
                     String resetSql = String.format(resetSqlTemplate, resetSqlArgument);
                     statement.execute(resetSql);
                 }
             }
         }
+
     }
 
     /**

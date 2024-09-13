@@ -7,15 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.context.ContextConfiguration;
 import uz.nazir.trainee.DbTestUtil;
+import uz.nazir.trainee.IntegrationTestInitializr;
 import uz.nazir.trainee.TestDataGenerator;
 import uz.nazir.trainee.dto.request.StudentRequest;
 import uz.nazir.trainee.dto.response.StudentResponse;
+import uz.nazir.trainee.dto.response.TeacherResponse;
 import uz.nazir.trainee.entities.Student;
 import uz.nazir.trainee.mappers.StudentMapper;
 import uz.nazir.trainee.repositories.StudentRepository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uz.nazir.trainee.TestDataGenerator.RANDOM;
 
+@ContextConfiguration(initializers = IntegrationTestInitializr.class)
 @SpringBootTest
 //@Sql(scripts = "classpath:db/test/drop_tables.sql",executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 //@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -65,9 +72,13 @@ class StudentServiceTest {
     @Test
     void readAll() {
         var actual = studentService.readAll(Pageable.unpaged()).getContent();
+        var sortedActual = new ArrayList<>(actual);
+
+        //sort
+        sortedActual.sort(Comparator.comparing(StudentResponse::getId));
 
         for (int i = 0; i < testData.size(); i++) {
-            var actualStudent = actual.get(i);
+            var actualStudent = sortedActual.get(i);
             var expectedStudent = testData.get(i);
 
             assertEquals(expectedStudent.getId(), actualStudent.getId());

@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
 import uz.nazir.trainee.DbTestUtil;
+import uz.nazir.trainee.IntegrationTestInitializr;
 import uz.nazir.trainee.TestDataGenerator;
 import uz.nazir.trainee.dto.request.SubjectRequest;
 import uz.nazir.trainee.dto.response.SubjectResponse;
@@ -25,7 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uz.nazir.trainee.TestDataGenerator.RANDOM;
 
+@ContextConfiguration(initializers = IntegrationTestInitializr.class)
 @SpringBootTest
+//DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class SubjectServiceTest {
 
     @Autowired
